@@ -49,6 +49,29 @@ void Trem::run(){
             emit updateGUI(ID, x,y);    //Emite um sinal
             break;
 
+        case 4: //Trem 4
+            if (y == 150 && x < 460)
+                x+=10;
+            else if (x == 460 && y < 290)
+                y+=10;
+            else if (x > 190 && y == 290)
+                x-=10;
+            else
+                y-=10;
+            emit updateGUI(ID, x,y);    //Emite um sinal
+            break;
+
+        case 5: //Trem 5
+            if (y == 150 && x < 730)
+                x+=10;
+            else if (x == 730 && y < 290)
+                y+=10;
+            else if (x > 460 && y == 290)
+                x-=10;
+            else
+                y-=10;
+            emit updateGUI(ID, x,y);    //Emite um sinal
+            break;
         default:
             break;
         }
