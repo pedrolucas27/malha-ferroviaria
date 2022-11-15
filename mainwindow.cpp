@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "iostream"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -13,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     trem3 = new Trem(3,600,30);
     trem4 = new Trem(4,190,150);
     trem5 = new Trem(5,460,150);
+
     /*
      * Conecta o sinal UPDATEGUI à função UPDATEINTERFACE.
      * Ou seja, sempre que o sinal UPDATEGUI foi chamado, será executada a função UPDATEINTERFACE.
@@ -26,11 +28,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(trem4,SIGNAL(updateGUI(int,int,int)),SLOT(updateInterface(int,int,int)));
     connect(trem5,SIGNAL(updateGUI(int,int,int)),SLOT(updateInterface(int,int,int)));
 
-
 }
 
 //Função que será executada quando o sinal UPDATEGUI for emitido
 void MainWindow::updateInterface(int id, int x, int y){
+    std::cout << "ID -> " << id << ", x -> " << x << "y -> " << y << std::endl;
     switch(id){
     case 1: //Atualiza a posição do objeto da tela (quadrado) que representa o trem1
         ui->label_trem1->setGeometry(x,y,21,17);
@@ -79,4 +81,29 @@ void MainWindow::on_pushButton_2_clicked()
     trem3->terminate();
     trem4->terminate();
     trem5->terminate();
+}
+
+void MainWindow::on_slider_trem_t1_sliderMoved(int position)
+{
+    trem1->set_velocidade(position);
+}
+
+void MainWindow::on_slider_trem_t2_sliderMoved(int position)
+{
+    trem2->set_velocidade(position);
+}
+
+void MainWindow::on_slider_trem_t3_sliderMoved(int position)
+{
+    trem3->set_velocidade(position);
+}
+
+void MainWindow::on_slider_trem_t4_sliderMoved(int position)
+{
+    trem4->set_velocidade(position);
+}
+
+void MainWindow::on_slider_trem_t5_sliderMoved(int position)
+{
+    trem5->set_velocidade(position);
 }

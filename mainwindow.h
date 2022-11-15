@@ -25,6 +25,17 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_slider_trem_t1_sliderMoved(int position);
+
+    void on_slider_trem_t2_sliderMoved(int position);
+
+    void on_slider_trem_t3_sliderMoved(int position);
+
+    void on_slider_trem_t4_sliderMoved(int position);
+
+    void on_slider_trem_t5_sliderMoved(int position);
+
+
 private:
     Ui::MainWindow *ui;
 

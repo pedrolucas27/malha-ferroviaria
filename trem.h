@@ -16,6 +16,7 @@ public:
     Trem(int,int,int);  //construtor
     void run();         //função a ser executada pela thread
 
+    void set_velocidade(int valor_slider);
 
 //Cria um sinal
 signals:
