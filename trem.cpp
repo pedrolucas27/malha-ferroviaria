@@ -81,7 +81,7 @@ void Trem::run(){
 
 
 void Trem::set_velocidade(int valor_slider){
-    velocidade = 100 - valor_slider;
+    velocidade = 200 - valor_slider;
 }
 
 

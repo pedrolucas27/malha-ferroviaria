@@ -20,11 +20,9 @@ public:
 public slots:
     void updateInterface(int,int,int);
 
+    void startAll();
+
 private slots:
-    void on_pushButton_clicked();
-
-    void on_pushButton_2_clicked();
-
     void on_slider_trem_t1_sliderMoved(int position);
 
     void on_slider_trem_t2_sliderMoved(int position);

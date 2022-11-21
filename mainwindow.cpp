@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "iostream"
+//#include "iostream"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -14,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
     trem3 = new Trem(3,600,30);
     trem4 = new Trem(4,190,150);
     trem5 = new Trem(5,460,150);
+
+    startAll();
 
     /*
      * Conecta o sinal UPDATEGUI à função UPDATEINTERFACE.
@@ -32,7 +34,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
 //Função que será executada quando o sinal UPDATEGUI for emitido
 void MainWindow::updateInterface(int id, int x, int y){
-    std::cout << "ID -> " << id << ", x -> " << x << "y -> " << y << std::endl;
     switch(id){
     case 1: //Atualiza a posição do objeto da tela (quadrado) que representa o trem1
         ui->label_trem1->setGeometry(x,y,21,17);
@@ -62,25 +63,13 @@ MainWindow::~MainWindow()
 /*
  * Ao clicar, trens começam execução
  */
-void MainWindow::on_pushButton_clicked()
+void MainWindow::startAll()
 {
     trem1->start();
     trem2->start();
     trem3->start();
     trem4->start();
     trem5->start();
-}
-
-/*
- * Ao clicar, trens param execução
- */
-void MainWindow::on_pushButton_2_clicked()
-{
-    trem1->terminate();
-    trem2->terminate();
-    trem3->terminate();
-    trem4->terminate();
-    trem5->terminate();
 }
 
 void MainWindow::on_slider_trem_t1_sliderMoved(int position)
