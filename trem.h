@@ -2,6 +2,7 @@
 #define TREM_H
 
 #include <QThread>
+#include "areaZero.h"
 
 /*
  * Classe Trem herda QThread
@@ -17,6 +18,11 @@ public:
     void run();         //função a ser executada pela thread
 
     void set_velocidade(int valor_slider);
+    //AreaZero a0;
+
+    bool checarArea0(int x, int y, int ID);
+
+    bool checarEstaProximo(int x, int y, int ID);
 
 //Cria um sinal
 signals:

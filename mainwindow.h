@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "trem.h"
+#include "areaZero.h"
 
 namespace Ui {
 class MainWindow;
@@ -36,6 +37,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
+
 
     //Cria os objetos TREM's
     Trem *trem1;
