@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-//#include "iostream"
+#include "iostream"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -15,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent) :
     trem4 = new Trem(4,190,150);
     trem5 = new Trem(5,460,150);
 
+    area0 = new AreaZero();
+
     startAll();
 
     /*
@@ -24,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
      * Trem1 e Trem2 são os objetos que podem chamar o sinal. Se um outro objeto chamar o
      * sinal UPDATEGUI, não haverá execução da função UPDATEINTERFACE
      */
+
     connect(trem1,SIGNAL(updateGUI(int,int,int)),SLOT(updateInterface(int,int,int)));
     connect(trem2,SIGNAL(updateGUI(int,int,int)),SLOT(updateInterface(int,int,int)));
     connect(trem3,SIGNAL(updateGUI(int,int,int)),SLOT(updateInterface(int,int,int)));
@@ -34,24 +37,26 @@ MainWindow::MainWindow(QWidget *parent) :
 
 //Função que será executada quando o sinal UPDATEGUI for emitido
 void MainWindow::updateInterface(int id, int x, int y){
+    strategy(id);
+
     switch(id){
-    case 1: //Atualiza a posição do objeto da tela (quadrado) que representa o trem1
-        ui->label_trem1->setGeometry(x,y,21,17);
-        break;
-    case 2: //Atualiza a posição do objeto da tela (quadrado) que representa o trem2
-        ui->label_trem2->setGeometry(x,y,21,17);
-        break;
-    case 3: //Atualiza a posição do objeto da tela (quadrado) que representa o trem3
-        ui->label_trem3->setGeometry(x,y,21,17);
-        break;
-    case 4: //Atualiza a posição do objeto da tela (quadrado) que representa o trem4
-        ui->label_trem4->setGeometry(x,y,21,17);
-        break;
-    case 5: //Atualiza a posição do objeto da tela (quadrado) que representa o trem5
-        ui->label_trem5->setGeometry(x,y,21,17);
-        break;
-    default:
-        break;
+        case 1: //Atualiza a posição do objeto da tela (quadrado) que representa o trem1
+            ui->label_trem1->setGeometry(trem1->get_x(),trem1->get_y(),21,17);
+            break;
+        case 2: //Atualiza a posição do objeto da tela (quadrado) que representa o trem2
+            ui->label_trem2->setGeometry(trem2->get_x(),trem2->get_y(),21,17);
+            break;
+        case 3: //Atualiza a posição do objeto da tela (quadrado) que representa o trem3
+            ui->label_trem3->setGeometry(trem3->get_x(),trem3->get_y(),21,17);
+            break;
+        case 4: //Atualiza a posição do objeto da tela (quadrado) que representa o trem4
+            ui->label_trem4->setGeometry(trem4->get_x(),trem4->get_y(),21,17);
+            break;
+        case 5: //Atualiza a posição do objeto da tela (quadrado) que representa o trem5
+            ui->label_trem5->setGeometry(trem5->get_x(),trem5->get_y(),21,17);
+            break;
+        default:
+            break;
     }
 }
 
@@ -95,4 +100,78 @@ void MainWindow::on_slider_trem_t4_sliderMoved(int position)
 void MainWindow::on_slider_trem_t5_sliderMoved(int position)
 {
     trem5->set_velocidade(position);
+}
+
+
+void MainWindow::strategy(int ID){
+    switch (ID){
+        case 1: // Trem 1
+            if(!(area0->checar_proximidade_area(trem1->get_x(), trem1->get_y(), ID) && area0->get_ocupacao() == 1)){
+
+                area0->atualizarOcupacao(trem1->get_x(), trem1->get_y()); // -> usar mutex aqui
+
+                if (trem1->get_x() < 330 && trem1->get_y() == 30)
+                    trem1->set_x(trem1->get_x() + 10);
+                else if (trem1->get_x() == 330 && trem1->get_y() < 150)
+                    trem1->set_y(trem1->get_y() + 10);
+                else if (trem1->get_x() > 60 && trem1->get_y() == 150)
+                    trem1->set_x(trem1->get_x() - 10);
+                else
+                    trem1->set_y(trem1->get_y() - 10);
+            }
+
+
+            break;
+        case 2: // Trem 2
+            if(!(area0->checar_proximidade_area(trem2->get_x(), trem2->get_y(), ID) && area0->get_ocupacao() == 1)){
+                area0->atualizarOcupacao(trem2->get_x(), trem2->get_y()); // -> usar mutex aqui
+
+                if (trem2->get_x() < 600 && trem2->get_y() == 30)
+                    trem2->set_x(trem2->get_x() + 10);
+                else if (trem2->get_x() == 600 && trem2->get_y() < 150)
+                    trem2->set_y(trem2->get_y() + 10);
+                else if (trem2->get_x() > 330 && trem2->get_y() == 150)
+                    trem2->set_x(trem2->get_x() - 10);
+                else
+                    trem2->set_y(trem2->get_y() - 10);
+            }
+
+
+
+            break;
+        case 3: // Trem 3
+            if (trem3->get_x() < 870 && trem3->get_y() == 30)
+                trem3->set_x(trem3->get_x() + 10);
+            else if (trem3->get_x() == 870 && trem3->get_y() < 150)
+                trem3->set_y(trem3->get_y() + 10);
+            else if (trem3->get_x() > 600 && trem3->get_y() == 150)
+                trem3->set_x(trem3->get_x() - 10);
+            else
+                trem3->set_y(trem3->get_y() - 10);
+            break;
+
+        case 4: // Trem 4
+            if (trem4->get_x() < 460 && trem4->get_y() == 150)
+                trem4->set_x(trem4->get_x() + 10);
+            else if (trem4->get_x() == 460 && trem4->get_y() < 290)
+                trem4->set_y(trem4->get_y() + 10);
+            else if (trem4->get_x() > 190 && trem4->get_y() == 290)
+                trem4->set_x(trem4->get_x() - 10);
+            else
+                trem4->set_y(trem4->get_y() - 10);
+            break;
+
+        case 5: // Trem 5
+            if (trem5->get_x() < 730 && trem5->get_y() == 150)
+                trem5->set_x(trem5->get_x() + 10);
+            else if (trem5->get_x() == 730 && trem5->get_y() < 290)
+                trem5->set_y(trem5->get_y() + 10);
+            else if (trem5->get_x() > 460 && trem5->get_y() == 290)
+                trem5->set_x(trem5->get_x() - 10);
+            else
+                trem5->set_y(trem5->get_y() - 10);
+            break;
+        default:
+            break;
+    }
 }
