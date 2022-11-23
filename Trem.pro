@@ -13,11 +13,13 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
+    areaOne.cpp \
     areaZero.cpp \
         mainwindow.cpp \
     trem.cpp
 
 HEADERS  += mainwindow.h \
+    areaOne.h \
     areaZero.h \
     trem.h
 

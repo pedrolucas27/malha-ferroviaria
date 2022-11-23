@@ -31,7 +31,7 @@ bool AreaZero::ehAreaCritica(int x, int y){
 }
 
 bool AreaZero::checar_proximidade_area(int x, int y, int ID){
-    if(ID == 1) return (x >= 310 && x < 330) && (y == 30);
-    return (x <= 350 && x > 330) && (y == 150);
+    if(ID == 1) return (x >= 310 && x <= 330) && (y == 30);
+    return (x <= 350 && x >= 330) && (y == 150);
 }
 

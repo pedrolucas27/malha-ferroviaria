@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "trem.h"
 #include "areaZero.h"
+#include "areaOne.h"
 
 namespace Ui {
 class MainWindow;
@@ -23,6 +24,16 @@ public slots:
     void startAll();
 
     void strategy(int);
+
+    void andar_trem1();
+
+    void andar_trem2();
+
+    void andar_trem3();
+
+    void andar_trem4();
+
+    void andar_trem5();
 
 private slots:
     void on_slider_trem_t1_sliderMoved(int position);
@@ -47,6 +58,7 @@ private:
     Trem *trem5;
 
     AreaZero *area0;
+    AreaOne *area1;
 
 };
 

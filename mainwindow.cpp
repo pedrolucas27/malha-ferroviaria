@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     trem5 = new Trem(5,460,150);
 
     area0 = new AreaZero();
-
+    area1 = new AreaOne();
     startAll();
 
     /*
@@ -102,74 +102,103 @@ void MainWindow::on_slider_trem_t5_sliderMoved(int position)
     trem5->set_velocidade(position);
 }
 
+void MainWindow::andar_trem1(){
+    if (trem1->get_x() < 330 && trem1->get_y() == 30)
+        trem1->set_x(trem1->get_x() + 10);
+    else if (trem1->get_x() == 330 && trem1->get_y() < 150)
+        trem1->set_y(trem1->get_y() + 10);
+    else if (trem1->get_x() > 60 && trem1->get_y() == 150)
+        trem1->set_x(trem1->get_x() - 10);
+    else
+        trem1->set_y(trem1->get_y() - 10);
+}
+
+void MainWindow::andar_trem2(){
+    if (trem2->get_x() < 600 && trem2->get_y() == 30)
+        trem2->set_x(trem2->get_x() + 10);
+    else if (trem2->get_x() == 600 && trem2->get_y() < 150)
+        trem2->set_y(trem2->get_y() + 10);
+    else if (trem2->get_x() > 330 && trem2->get_y() == 150)
+        trem2->set_x(trem2->get_x() - 10);
+    else
+        trem2->set_y(trem2->get_y() - 10);
+}
+
+void MainWindow::andar_trem3(){
+    if (trem3->get_x() < 870 && trem3->get_y() == 30)
+        trem3->set_x(trem3->get_x() + 10);
+    else if (trem3->get_x() == 870 && trem3->get_y() < 150)
+        trem3->set_y(trem3->get_y() + 10);
+    else if (trem3->get_x() > 600 && trem3->get_y() == 150)
+        trem3->set_x(trem3->get_x() - 10);
+    else
+        trem3->set_y(trem3->get_y() - 10);
+}
+
+void MainWindow::andar_trem4(){
+    if (trem4->get_x() < 460 && trem4->get_y() == 150)
+        trem4->set_x(trem4->get_x() + 10);
+    else if (trem4->get_x() == 460 && trem4->get_y() < 290)
+        trem4->set_y(trem4->get_y() + 10);
+    else if (trem4->get_x() > 190 && trem4->get_y() == 290)
+        trem4->set_x(trem4->get_x() - 10);
+    else
+        trem4->set_y(trem4->get_y() - 10);
+}
+
+void MainWindow::andar_trem5(){
+    if (trem5->get_x() < 730 && trem5->get_y() == 150)
+        trem5->set_x(trem5->get_x() + 10);
+    else if (trem5->get_x() == 730 && trem5->get_y() < 290)
+        trem5->set_y(trem5->get_y() + 10);
+    else if (trem5->get_x() > 460 && trem5->get_y() == 290)
+        trem5->set_x(trem5->get_x() - 10);
+    else
+        trem5->set_y(trem5->get_y() - 10);
+}
 
 void MainWindow::strategy(int ID){
     switch (ID){
         case 1: // Trem 1
             if(!(area0->checar_proximidade_area(trem1->get_x(), trem1->get_y(), ID) && area0->get_ocupacao() == 1)){
-
                 area0->atualizarOcupacao(trem1->get_x(), trem1->get_y()); // -> usar mutex aqui
-
-                if (trem1->get_x() < 330 && trem1->get_y() == 30)
-                    trem1->set_x(trem1->get_x() + 10);
-                else if (trem1->get_x() == 330 && trem1->get_y() < 150)
-                    trem1->set_y(trem1->get_y() + 10);
-                else if (trem1->get_x() > 60 && trem1->get_y() == 150)
-                    trem1->set_x(trem1->get_x() - 10);
-                else
-                    trem1->set_y(trem1->get_y() - 10);
+                andar_trem1();
             }
-
-
             break;
         case 2: // Trem 2
-            if(!(area0->checar_proximidade_area(trem2->get_x(), trem2->get_y(), ID) && area0->get_ocupacao() == 1)){
-                area0->atualizarOcupacao(trem2->get_x(), trem2->get_y()); // -> usar mutex aqui
-
-                if (trem2->get_x() < 600 && trem2->get_y() == 30)
-                    trem2->set_x(trem2->get_x() + 10);
-                else if (trem2->get_x() == 600 && trem2->get_y() < 150)
-                    trem2->set_y(trem2->get_y() + 10);
-                else if (trem2->get_x() > 330 && trem2->get_y() == 150)
-                    trem2->set_x(trem2->get_x() - 10);
-                else
-                    trem2->set_y(trem2->get_y() - 10);
+            if(area0->checar_proximidade_area(trem2->get_x(), trem2->get_y(), ID)){
+                if(!(area0->get_ocupacao() == 1)){
+                    area0->atualizarOcupacao(trem2->get_x(), trem2->get_y()); // -> usar mutex aqui
+                    andar_trem2();
+                }
+            }else if(area1->checar_proximidade_area(trem2->get_x(), trem2->get_y(), ID)){
+                if(!(area1->get_ocupacao() == 1)){
+                    area1->atualizarOcupacao(trem2->get_x(), trem2->get_y()); // -> usar mutex aqui
+                    andar_trem2();
+                }
+            }else{
+                area0->atualizarOcupacao(trem2->get_x(), trem2->get_y());
+                area1->atualizarOcupacao(trem2->get_x(), trem2->get_y());
+                andar_trem2();
             }
-
-
-
             break;
         case 3: // Trem 3
-            if (trem3->get_x() < 870 && trem3->get_y() == 30)
-                trem3->set_x(trem3->get_x() + 10);
-            else if (trem3->get_x() == 870 && trem3->get_y() < 150)
-                trem3->set_y(trem3->get_y() + 10);
-            else if (trem3->get_x() > 600 && trem3->get_y() == 150)
-                trem3->set_x(trem3->get_x() - 10);
-            else
-                trem3->set_y(trem3->get_y() - 10);
+            if(area1->checar_proximidade_area(trem3->get_x(), trem3->get_y(), ID)){
+                if(!(area1->get_ocupacao() == 1)){
+                    area1->atualizarOcupacao(trem3->get_x(), trem3->get_y()); // -> usar mutex aqui
+                    andar_trem3();
+                }
+            }else{
+                area1->atualizarOcupacao(trem3->get_x(), trem3->get_y()); // -> usar mutex aqui
+                andar_trem3();
+            }
             break;
-
         case 4: // Trem 4
-            if (trem4->get_x() < 460 && trem4->get_y() == 150)
-                trem4->set_x(trem4->get_x() + 10);
-            else if (trem4->get_x() == 460 && trem4->get_y() < 290)
-                trem4->set_y(trem4->get_y() + 10);
-            else if (trem4->get_x() > 190 && trem4->get_y() == 290)
-                trem4->set_x(trem4->get_x() - 10);
-            else
-                trem4->set_y(trem4->get_y() - 10);
+            andar_trem4();
             break;
 
         case 5: // Trem 5
-            if (trem5->get_x() < 730 && trem5->get_y() == 150)
-                trem5->set_x(trem5->get_x() + 10);
-            else if (trem5->get_x() == 730 && trem5->get_y() < 290)
-                trem5->set_y(trem5->get_y() + 10);
-            else if (trem5->get_x() > 460 && trem5->get_y() == 290)
-                trem5->set_x(trem5->get_x() - 10);
-            else
-                trem5->set_y(trem5->get_y() - 10);
+            andar_trem5();
             break;
         default:
             break;
