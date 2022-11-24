@@ -13,13 +13,15 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-    areaOne.cpp \
+    areaSeis.cpp \
+    areaUm.cpp \
     areaZero.cpp \
         mainwindow.cpp \
     trem.cpp
 
 HEADERS  += mainwindow.h \
-    areaOne.h \
+    areaSeis.h \
+    areaUm.h \
     areaZero.h \
     trem.h
 
