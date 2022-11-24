@@ -1,11 +1,11 @@
-#ifndef AREAZERO_H
-#define AREAZERO_H
+#ifndef AREASEIS_H
+#define AREASEIS_H
 
 #include "QMutex"
 
-class AreaZero{
+class AreaSeis{
     public:
-        AreaZero();
+        AreaSeis();
 
         void bloquear();
 
@@ -25,7 +25,4 @@ class AreaZero{
         QMutex m_mutex;
 };
 
-#endif // AREAZERO_H
-
-
-
+#endif // AREASEIS_H

@@ -16,7 +16,9 @@ MainWindow::MainWindow(QWidget *parent) :
     trem5 = new Trem(5,460,150);
 
     area0 = new AreaZero();
-    area1 = new AreaOne();
+    area1 = new AreaUm();
+    area6 = new AreaSeis();
+
     startAll();
 
     /*
@@ -27,16 +29,16 @@ MainWindow::MainWindow(QWidget *parent) :
      * sinal UPDATEGUI, não haverá execução da função UPDATEINTERFACE
      */
 
-    connect(trem1,SIGNAL(updateGUI(int,int,int)),SLOT(updateInterface(int,int,int)));
-    connect(trem2,SIGNAL(updateGUI(int,int,int)),SLOT(updateInterface(int,int,int)));
-    connect(trem3,SIGNAL(updateGUI(int,int,int)),SLOT(updateInterface(int,int,int)));
-    connect(trem4,SIGNAL(updateGUI(int,int,int)),SLOT(updateInterface(int,int,int)));
-    connect(trem5,SIGNAL(updateGUI(int,int,int)),SLOT(updateInterface(int,int,int)));
+    connect(trem1,SIGNAL(updateGUI(int)),SLOT(updateInterface(int)));
+    connect(trem2,SIGNAL(updateGUI(int)),SLOT(updateInterface(int)));
+    connect(trem3,SIGNAL(updateGUI(int)),SLOT(updateInterface(int)));
+    connect(trem4,SIGNAL(updateGUI(int)),SLOT(updateInterface(int)));
+    connect(trem5,SIGNAL(updateGUI(int)),SLOT(updateInterface(int)));
 
 }
 
 //Função que será executada quando o sinal UPDATEGUI for emitido
-void MainWindow::updateInterface(int id, int x, int y){
+void MainWindow::updateInterface(int id){
     strategy(id);
 
     switch(id){
@@ -194,11 +196,16 @@ void MainWindow::strategy(int ID){
             }
             break;
         case 4: // Trem 4
-            andar_trem4();
+            if(!(area6->checar_proximidade_area(trem4->get_x(), trem4->get_y(), ID) && area6->get_ocupacao() == 1)){
+                area6->atualizarOcupacao(trem4->get_x(), trem4->get_y()); // -> usar mutex aqui
+                andar_trem4();
+            }
             break;
-
         case 5: // Trem 5
-            andar_trem5();
+            if(!(area6->checar_proximidade_area(trem5->get_x(), trem5->get_y(), ID) && area6->get_ocupacao() == 1)){
+                area6->atualizarOcupacao(trem5->get_x(), trem5->get_y()); // -> usar mutex aqui
+                andar_trem5();
+            }
             break;
         default:
             break;

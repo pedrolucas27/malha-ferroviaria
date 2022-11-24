@@ -2,9 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+
 #include "trem.h"
 #include "areaZero.h"
-#include "areaOne.h"
+#include "areaUm.h"
+#include "areaSeis.h"
 
 namespace Ui {
 class MainWindow;
@@ -19,7 +21,7 @@ public:
     ~MainWindow();
 
 public slots:
-    void updateInterface(int,int,int);
+    void updateInterface(int);
 
     void startAll();
 
@@ -58,8 +60,8 @@ private:
     Trem *trem5;
 
     AreaZero *area0;
-    AreaOne *area1;
-
+    AreaUm *area1;
+    AreaSeis *area6;
 };
 
 #endif // MAINWINDOW_H

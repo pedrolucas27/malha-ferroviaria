@@ -1,18 +1,18 @@
-#include "areaOne.h"
+#include "areaUm.h"
 
-AreaOne::AreaOne(){
+AreaUm::AreaUm(){
     m_ocupacao = 0;
 }
 
-void AreaOne::bloquear(){
+void AreaUm::bloquear(){
     m_ocupacao = 1;
 }
 
-void AreaOne::desbloquear(){
+void AreaUm::desbloquear(){
     m_ocupacao = 0;
 }
 
-void AreaOne::atualizarOcupacao(int x, int y){
+void AreaUm::atualizarOcupacao(int x, int y){
     m_mutex.lock();
     if(ehAreaCritica(x, y)){
         bloquear();
@@ -22,15 +22,15 @@ void AreaOne::atualizarOcupacao(int x, int y){
     m_mutex.unlock();
 }
 
-int AreaOne::get_ocupacao(){
+int AreaUm::get_ocupacao(){
     return m_ocupacao;
 }
 
-bool AreaOne::ehAreaCritica(int x, int y){
+bool AreaUm::ehAreaCritica(int x, int y){
     return x == 600 && (y >= 30 && y <= 150);
 }
 
-bool AreaOne::checar_proximidade_area(int x, int y, int ID){
+bool AreaUm::checar_proximidade_area(int x, int y, int ID){
     if(ID == 2) return (x >= 580 && x <= 600) && (y == 30);
     return (x <= 620 && x >= 600) && (y == 150);
 }

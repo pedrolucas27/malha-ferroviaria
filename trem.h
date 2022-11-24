@@ -4,13 +4,7 @@
 #include <QThread>
 #include "areaZero.h"
 
-/*
- * Classe Trem herda QThread
- * Classe Trem passa a ser uma thread.
- * A função START inicializa a thread. Após inicializada, a thread irá executar a função RUN.
- * Para parar a execução da função RUN da thread, basta executar a função TERMINATE.
- *
-*/
+
 class Trem: public QThread{
  Q_OBJECT
 public:
@@ -34,8 +28,7 @@ public:
 
 //Cria um sinal
 signals:
-    void updateGUI(int,int,int);
-    //void updateGUI(int);
+    void updateGUI(int);
 
 private:
    int x;           //posição X do trem na tela
