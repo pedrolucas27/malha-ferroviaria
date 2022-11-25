@@ -8,6 +8,7 @@
 #include "areaUm.h"
 #include "areaSeis.h"
 #include "areaDois.h"
+#include "areaTres.h"
 
 namespace Ui {
 class MainWindow;
@@ -61,9 +62,10 @@ private:
     Trem *trem5;
 
     AreaZero *area0;
-    AreaUm *area1;
-    AreaSeis *area6;
+    AreaUm   *area1;
     AreaDois *area2;
+    AreaTres *area3;
+    AreaSeis *area6;
 };
 
 #endif // MAINWINDOW_H

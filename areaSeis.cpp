@@ -1,5 +1,4 @@
 #include "areaSeis.h"
-#include "iostream"
 
 AreaSeis::AreaSeis(){
     m_ocupacao = 0;

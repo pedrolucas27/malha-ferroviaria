@@ -17,8 +17,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     area0 = new AreaZero();
     area1 = new AreaUm();
-    area6 = new AreaSeis();
     area2 = new AreaDois();
+    area3 = new AreaTres();
+    area6 = new AreaSeis();
+
 
     startAll();
 
@@ -195,9 +197,15 @@ void MainWindow::strategy(int ID){
                     area1->atualizarOcupacao(trem2->get_x(), trem2->get_y()); // -> usar mutex aqui
                     andar_trem2();
                 }
+            }else if(area3->checar_proximidade_area(trem2->get_x(), trem2->get_y(), ID)){
+                if(!(area3->get_ocupacao() == 1)){
+                    area3->atualizarOcupacao(trem2->get_x(), trem2->get_y()); // -> usar mutex aqui
+                    andar_trem2();
+                }
             }else{
                 area0->atualizarOcupacao(trem2->get_x(), trem2->get_y());
                 area1->atualizarOcupacao(trem2->get_x(), trem2->get_y());
+                area3->atualizarOcupacao(trem2->get_x(), trem2->get_y());
                 andar_trem2();
             }
             break;
@@ -223,9 +231,15 @@ void MainWindow::strategy(int ID){
                     area2->atualizarOcupacao(trem4->get_x(), trem4->get_y()); // -> usar mutex aqui
                     andar_trem4();
                 }
+            }else if(area3->checar_proximidade_area(trem4->get_x(), trem4->get_y(), ID)){
+                if(!(area3->get_ocupacao() == 1)){
+                    area3->atualizarOcupacao(trem4->get_x(), trem4->get_y()); // -> usar mutex aqui
+                    andar_trem4();
+                }
             }else{
                 area6->atualizarOcupacao(trem4->get_x(), trem4->get_y());
                 area2->atualizarOcupacao(trem4->get_x(), trem4->get_y());
+                area3->atualizarOcupacao(trem4->get_x(), trem4->get_y());
                 andar_trem4();
             }
 
