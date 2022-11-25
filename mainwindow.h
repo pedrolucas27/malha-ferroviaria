@@ -6,9 +6,11 @@
 #include "trem.h"
 #include "areaZero.h"
 #include "areaUm.h"
-#include "areaSeis.h"
 #include "areaDois.h"
 #include "areaTres.h"
+#include "areaQuatro.h"
+#include "areaCinco.h"
+#include "areaSeis.h"
 
 namespace Ui {
 class MainWindow;
@@ -65,6 +67,8 @@ private:
     AreaUm   *area1;
     AreaDois *area2;
     AreaTres *area3;
+    AreaQuatro *area4;
+    AreaCinco *area5;
     AreaSeis *area6;
 };
 

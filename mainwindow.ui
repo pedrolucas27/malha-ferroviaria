@@ -516,7 +516,7 @@
    <widget class="QLabel" name="label_trem5">
     <property name="geometry">
      <rect>
-      <x>460</x>
+      <x>600</x>
       <y>150</y>
       <width>21</width>
       <height>17</height>
@@ -567,7 +567,7 @@
      <x>0</x>
      <y>0</y>
      <width>1219</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

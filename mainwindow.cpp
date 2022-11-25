@@ -19,6 +19,8 @@ MainWindow::MainWindow(QWidget *parent) :
     area1 = new AreaUm();
     area2 = new AreaDois();
     area3 = new AreaTres();
+    area4 = new AreaQuatro();
+    area5 = new AreaCinco();
     area6 = new AreaSeis();
 
 
@@ -181,10 +183,6 @@ void MainWindow::strategy(int ID){
                 andar_trem1();
             }
 
-//        if(!(area0->checar_proximidade_area(trem1->get_x(), trem1->get_y(), ID) && area0->get_ocupacao() == 1)){
-//                area0->atualizarOcupacao(trem1->get_x(), trem1->get_y()); // -> usar mutex aqui
-//                andar_trem1();
-//            }
             break;
         case 2: // Trem 2
             if(area0->checar_proximidade_area(trem2->get_x(), trem2->get_y(), ID)){
@@ -202,10 +200,17 @@ void MainWindow::strategy(int ID){
                     area3->atualizarOcupacao(trem2->get_x(), trem2->get_y()); // -> usar mutex aqui
                     andar_trem2();
                 }
+            }else if(area4->checar_proximidade_area(trem2->get_x(), trem2->get_y(), ID)){
+                if(!(area4->get_ocupacao() == 1)){
+                    area4->atualizarOcupacao(trem2->get_x(), trem2->get_y()); // -> usar mutex aqui
+                    andar_trem2();
+                }
             }else{
                 area0->atualizarOcupacao(trem2->get_x(), trem2->get_y());
                 area1->atualizarOcupacao(trem2->get_x(), trem2->get_y());
                 area3->atualizarOcupacao(trem2->get_x(), trem2->get_y());
+                area4->atualizarOcupacao(trem2->get_x(), trem2->get_y());
+
                 andar_trem2();
             }
             break;
@@ -215,8 +220,14 @@ void MainWindow::strategy(int ID){
                     area1->atualizarOcupacao(trem3->get_x(), trem3->get_y()); // -> usar mutex aqui
                     andar_trem3();
                 }
+            }else if(area5->checar_proximidade_area(trem3->get_x(), trem3->get_y(), ID)){
+                if(!(area5->get_ocupacao() == 1)){
+                    area5->atualizarOcupacao(trem3->get_x(), trem3->get_y()); // -> usar mutex aqui
+                    andar_trem3();
+                }
             }else{
                 area1->atualizarOcupacao(trem3->get_x(), trem3->get_y()); // -> usar mutex aqui
+                area5->atualizarOcupacao(trem3->get_x(), trem3->get_y()); // -> usar mutex aqui
                 andar_trem3();
             }
             break;
@@ -243,17 +254,31 @@ void MainWindow::strategy(int ID){
                 andar_trem4();
             }
 
-
-//            if(!(area6->checar_proximidade_area(trem4->get_x(), trem4->get_y(), ID) && area6->get_ocupacao() == 1)){
-//                area6->atualizarOcupacao(trem4->get_x(), trem4->get_y()); // -> usar mutex aqui
-//                andar_trem4();
-//            }
             break;
         case 5: // Trem 5
-            if(!(area6->checar_proximidade_area(trem5->get_x(), trem5->get_y(), ID) && area6->get_ocupacao() == 1)){
+            if(area4->checar_proximidade_area(trem5->get_x(), trem5->get_y(), ID)){
+                if(!(area4->get_ocupacao() == 1)){
+                    area4->atualizarOcupacao(trem5->get_x(), trem5->get_y()); // -> usar mutex aqui
+                    andar_trem5();
+                }
+            }else if(area5->checar_proximidade_area(trem5->get_x(), trem5->get_y(), ID)){
+                if(!(area5->get_ocupacao() == 1)){
+                    area5->atualizarOcupacao(trem5->get_x(), trem5->get_y()); // -> usar mutex aqui
+                    andar_trem5();
+                }
+            }
+            else if(area6->checar_proximidade_area(trem5->get_x(), trem5->get_y(), ID)){
+                if(!(area6->get_ocupacao() == 1)){
+                    area6->atualizarOcupacao(trem5->get_x(), trem5->get_y()); // -> usar mutex aqui
+                    andar_trem5();
+                }
+            }else{
+                area4->atualizarOcupacao(trem5->get_x(), trem5->get_y()); // -> usar mutex aqui
                 area6->atualizarOcupacao(trem5->get_x(), trem5->get_y()); // -> usar mutex aqui
+                area5->atualizarOcupacao(trem5->get_x(), trem5->get_y()); // -> usar mutex aqui
                 andar_trem5();
             }
+
             break;
         default:
             break;
