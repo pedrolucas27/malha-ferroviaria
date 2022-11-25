@@ -3,14 +3,7 @@
 
 #include <QMainWindow>
 
-#include "trem.h"
-#include "areaZero.h"
-#include "areaUm.h"
-#include "areaDois.h"
-#include "areaTres.h"
-#include "areaQuatro.h"
-#include "areaCinco.h"
-#include "areaSeis.h"
+#include "malhaFerroviaria.h"
 
 namespace Ui {
 class MainWindow;
@@ -27,20 +20,6 @@ public:
 public slots:
     void updateInterface(int);
 
-    void startAll();
-
-    void strategy(int);
-
-    void andar_trem1();
-
-    void andar_trem2();
-
-    void andar_trem3();
-
-    void andar_trem4();
-
-    void andar_trem5();
-
 private slots:
     void on_slider_trem_t1_sliderMoved(int position);
 
@@ -55,21 +34,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-
-    //Cria os objetos TREM's
-    Trem *trem1;
-    Trem *trem2;
-    Trem *trem3;
-    Trem *trem4;
-    Trem *trem5;
-
-    AreaZero *area0;
-    AreaUm   *area1;
-    AreaDois *area2;
-    AreaTres *area3;
-    AreaQuatro *area4;
-    AreaCinco *area5;
-    AreaSeis *area6;
+    MalhaFerroviaria *mf;
 };
 
 #endif // MAINWINDOW_H

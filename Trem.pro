@@ -21,6 +21,7 @@ SOURCES += main.cpp\
     areaUm.cpp \
     areaZero.cpp \
     mainwindow.cpp \
+    malhaFerroviaria.cpp \
     trem.cpp
 
 HEADERS  += mainwindow.h \
@@ -31,6 +32,7 @@ HEADERS  += mainwindow.h \
     areaTres.h \
     areaUm.h \
     areaZero.h \
+    malhaFerroviaria.h \
     trem.h
 
 FORMS    += mainwindow.ui
