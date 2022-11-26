@@ -31,10 +31,11 @@ private slots:
 
     void on_slider_trem_t5_sliderMoved(int position);
 
-
 private:
     Ui::MainWindow *ui;
     MalhaFerroviaria *mf;
+
+    QString intToQString(int);
 };
 
 #endif // MAINWINDOW_H

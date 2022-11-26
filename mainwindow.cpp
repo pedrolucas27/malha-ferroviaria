@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "string"
+
 #include "iostream"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -48,28 +50,36 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+QString MainWindow::intToQString(int number){
+    return QString::fromStdString(std::to_string(number));
+}
 
 void MainWindow::on_slider_trem_t1_sliderMoved(int position)
 {
     mf->get_trem1()->set_velocidade(position);
+    ui->label_v1->setText(intToQString(position));
 }
 
 void MainWindow::on_slider_trem_t2_sliderMoved(int position)
 {
     mf->get_trem2()->set_velocidade(position);
+    ui->label_v2->setText(intToQString(position));
 }
 
 void MainWindow::on_slider_trem_t3_sliderMoved(int position)
 {
     mf->get_trem3()->set_velocidade(position);
+    ui->label_v3->setText(intToQString(position));
 }
 
 void MainWindow::on_slider_trem_t4_sliderMoved(int position)
 {
     mf->get_trem4()->set_velocidade(position);
+    ui->label_v4->setText(intToQString(position));
 }
 
 void MainWindow::on_slider_trem_t5_sliderMoved(int position)
 {
     mf->get_trem5()->set_velocidade(position);
+    ui->label_v5->setText(intToQString(position));
 }

@@ -529,6 +529,71 @@
      <string/>
     </property>
    </widget>
+   <widget class="QLabel" name="label_v1">
+    <property name="geometry">
+     <rect>
+      <x>1160</x>
+      <y>50</y>
+      <width>41</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>100</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_v2">
+    <property name="geometry">
+     <rect>
+      <x>1160</x>
+      <y>80</y>
+      <width>41</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>100</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_v3">
+    <property name="geometry">
+     <rect>
+      <x>1160</x>
+      <y>110</y>
+      <width>41</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>100</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_v4">
+    <property name="geometry">
+     <rect>
+      <x>1160</x>
+      <y>140</y>
+      <width>41</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>100</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_v5">
+    <property name="geometry">
+     <rect>
+      <x>1160</x>
+      <y>170</y>
+      <width>41</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>100</string>
+    </property>
+   </widget>
    <zorder>label_trilho5_2</zorder>
    <zorder>label_trilho4_3</zorder>
    <zorder>label_trilho1</zorder>
@@ -560,6 +625,11 @@
    <zorder>label_trilho2_4</zorder>
    <zorder>label_trem4</zorder>
    <zorder>label_trem5</zorder>
+   <zorder>label_v1</zorder>
+   <zorder>label_v2</zorder>
+   <zorder>label_v3</zorder>
+   <zorder>label_v4</zorder>
+   <zorder>label_v5</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
